@@ -1,3 +1,0 @@
-/home/yu-niao/myLinux/mymuduo/build/CMakeFiles/mymuduo.dir
-/home/yu-niao/myLinux/mymuduo/build/CMakeFiles/edit_cache.dir
-/home/yu-niao/myLinux/mymuduo/build/CMakeFiles/rebuild_cache.dir

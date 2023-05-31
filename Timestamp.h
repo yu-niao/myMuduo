@@ -11,7 +11,7 @@ public:
     explicit Timestamp(int64_t microSecondsSinceEpoch);
 
     // 获取当前时间
-    Timestamp now();
+    static Timestamp now();
 
     // 将当前时间转化成 年月日, 时分秒
     std::string toString() const;
