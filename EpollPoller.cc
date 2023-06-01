@@ -32,7 +32,7 @@ EpollPoller::~EpollPoller()
     ::close(epollfd_);
 }
 
-Timestamp EpollPoller::pool(int timeoutMs, ChannelList* activeChannels)
+Timestamp EpollPoller::poll(int timeoutMs, ChannelList* activeChannels)
 {
     LOG_INFO("func = %s => fd totle count: %d\n",
         __FUNCTION__,

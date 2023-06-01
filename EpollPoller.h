@@ -12,7 +12,7 @@ public:
     EpollPoller(EventLoop *loop);
     ~EpollPoller() override;
 
-    Timestamp pool(int timeoutMs, ChannelList* activeChannels) override;
+    Timestamp poll(int timeoutMs, ChannelList* activeChannels) override;
     void updateChannel(Channel *channel) override;
     void removeChannel(Channel *channel) override;
 
