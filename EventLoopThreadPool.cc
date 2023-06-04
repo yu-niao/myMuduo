@@ -1,5 +1,6 @@
 
 
+#include "EventLoop.h"
 #include "EventLoopThread.h"
 #include "EventLoopThreadPool.h"
 #include <memory>
@@ -40,10 +41,30 @@ void EventLoopThreadPool::start(const ThreadInitCallback& cb)
 // 如果工作在多线程，baseloop会以轮询的方式分配channel给subloop
 EventLoop* EventLoopThreadPool::getNextLoop()
 {
+    EventLoop* loop = baseLoop_;
 
+    // 通过轮询获取下一个事件的loop
+    if (!loops_.empty())
+    {
+        loop = loops_[next_];
+        ++next_;
+        if (next_ >= loops_.size())
+        {
+            next_ = 0;
+        }
+    }
+
+    return loop;
 }
 
 std::vector<EventLoop*> EventLoopThreadPool::getAllLoops()
 {
-
+    if (loops_.empty())
+    {
+        return std::vector<EventLoop*>(1, baseLoop_);
+    }
+    else  
+    {
+        return loops_;
+    }
 }

@@ -73,10 +73,12 @@ void EpollPoller::fillActiveChannels(int numEvents, ChannelList *activeChannels)
     {
         Channel* channel = static_cast<Channel*>(events_[i].data.ptr);
         channel->set_revents(events_[i].events);
+        // EventLoop就拿到了它的poller返回的所有发生事件的channel列表
         activeChannels->push_back(channel);
     }
 }
 
+// channel update remove => EventLoop updateChannel removeChannel => Poller updateChannel removeChannel
 void EpollPoller::updateChannel(Channel *channel)
 {
     const int index = channel->index();

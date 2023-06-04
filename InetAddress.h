@@ -1,6 +1,7 @@
 #ifndef _INETADDRESS_H_ 
 #define _INETADDRESS_H_
 
+#include <netinet/in.h>
 #include <string>
 #include <arpa/inet.h>
 
@@ -17,6 +18,7 @@ public:
     uint16_t toPort() const;
 
     const sockaddr_in getSockaddr() const;
+    void setSockAddr(const sockaddr_in& addr) { addr_ = addr; }
 
 private:
     struct sockaddr_in addr_;

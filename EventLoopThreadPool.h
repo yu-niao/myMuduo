@@ -20,7 +20,7 @@ public:
     EventLoopThreadPool(EventLoop*, const std::string&);
     ~EventLoopThreadPool();
 
-    void setThread(int numThreads) { numThreads_ = numThreads; }
+    void setThreadNum(int numThreads) { numThreads_ = numThreads; }
 
     void start(const ThreadInitCallback& cb = ThreadInitCallback());
 

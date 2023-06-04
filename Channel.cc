@@ -28,13 +28,13 @@ void Channel::tie(const std::shared_ptr<void>& obj)
 
 void Channel::update()
 {
-
+    // loop_->updateChannel(this);
 }
 
 // 在 EventLoop 中删除当前的 channel
 void Channel::remove()
 {
-
+    // loop_->removeChannel(this);
 }
 
 // 处理事件
