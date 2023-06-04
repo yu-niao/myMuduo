@@ -35,6 +35,7 @@ private:
     std::string name_;
     static std::atomic_int32_t numCreated_;
     pid_t tid_;
+
 };
 
 #endif

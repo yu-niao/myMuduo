@@ -8,6 +8,8 @@ EventLoopThread::EventLoopThread(const ThreadInitCallback &cb,
     : loop_(nullptr)
     , exiting_(false)
     , thread_(std::bind(&EventLoopThread::threadFunc, this), name)
+    , mutex_()
+    , cond_()
     , callback_(cb)
 {}
 
@@ -28,10 +30,13 @@ EventLoop *EventLoopThread::startLoop()
     EventLoop* loop = nullptr;
     {
         std::unique_lock<std::mutex> lock(mutex_);
-        while (loop_ == nullptr)
-        {
-            cond_.wait(lock);
-        }
+        // while (loop_ == nullptr)
+        // {
+        //     cond_.wait(lock);
+        // }
+
+        cond_.wait(lock, [&]()-> bool { return loop_ != nullptr; });
+
         loop = loop_;
     }
 
